@@ -1,0 +1,12 @@
+<div class="flex">
+  <h1>{{title}}</h1>
+
+  <form [formGroup]="formGroup" (submit)="submit()">
+    <div *ngFor="let input of cloudForm">
+      <app-cloud-field [formGroup]="formGroup" [field]="input"></app-cloud-field>
+    </div>
+    <button mat-raised-button color="primary">Submit</button>
+  </form>
+
+  <p>{{formValue}}</p>
+</div>

@@ -1,0 +1,15 @@
+
+<div [formGroup]="formGroup" class="input" [ngSwitch]="field.type">
+    <mat-form-field class="full-width">
+        <mat-label>{{field.label}}</mat-label>
+        <mat-select *ngSwitchCase="'select'" [formControlName]="field.id">
+            <mat-option *ngFor="let option of field.options" [value]="option">{{option}}</mat-option>
+        </mat-select>
+        <input *ngSwitchDefault autocomplete="off" [type]="field.type" matNativeControl matInput [name]="field.id" [formControlName]="field.id">
+        <mat-error *ngIf="formControlNode?.errors">
+            <i *ngIf="formControlNode?.errors?.['required']">{{field.label}} is required</i>
+            <i *ngIf="formControlNode?.errors?.['minlength']">Min length should be {{formControlNode?.errors?.['minlength']['requiredLength']}}</i>
+            <i *ngIf="formControlNode?.errors?.['maxlength']">Max length should be {{formControlNode?.errors?.['maxlength']['requiredLength']}}</i>
+        </mat-error>
+    </mat-form-field>
+</div>
