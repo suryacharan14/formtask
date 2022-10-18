@@ -16,6 +16,7 @@ export interface CloudValidators{
 
 export interface AppResponse{
     type: string,
-    data?: any,
+    message?: any,
     error?: any,
+    action?: string,
 }

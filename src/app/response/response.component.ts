@@ -15,7 +15,11 @@ export class ResponseComponent implements OnInit {
   }
 
   onClose(){
-    this.dialogRef.close();
+    this.dialogRef.close(null);
+  }
+
+  next(){
+    this.dialogRef.close(this.data.action);
   }
   
   toJsonString(obj: object){
