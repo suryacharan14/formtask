@@ -1,37 +1,18 @@
 {
   "form": [
     {
-      "id": "firstName",
-      "label": "First Name",
+      "id": "nationalId",
+      "label": "National Id",
       "type": "text",
-      "validators": { "required": true, "minlength": 3, "maxlength": 8 }
+      "validators": { "required": true, "minlength": 14, "maxlength": 14 }
     },
     {
-      "id": "lastName",
-      "label": "Last Name",
-      "type": "text",
-      "validators": { "required": true, "minlength": 3, "maxlength": 8 }
-    },
-    {
-      "id": "email",
-      "label": "Email",
-      "type": "text",
-      "validators": { "required": true }
-    },
-    {
-      "id": "project",
-      "label": "Project Name",
-      "type": "text",
-      "value": "TRAX"
-    },
-    {
-      "id": "taskassigned",
-      "label": "Task Assigned",
+      "id": "type",
+      "label": "Type",
       "type": "select",
       "value": "No",
-      "options": ["Yes", "No"],
+      "options": ["Outpatient", "Inpatient"],
       "validators": { "required": true }
-    },
-    { "id": "enddate", "label": "End Date", "type": "date" }
+    }
   ]
 }
