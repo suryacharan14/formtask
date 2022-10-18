@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
       console.log(this.formGroup.value);
       this.formValue = JSON.stringify(this.formGroup.value);
       try {
-        this.http.get('http://127.0.0.1:8000/validate').pipe(catchError(this.handleError)).subscribe(data => alert(JSON.stringify(data)));
+        this.http.post('http://127.0.0.1:8000/validate', this.formValue).pipe(catchError(this.handleError)).subscribe(data => alert(JSON.stringify(data)));
       } catch (error) {
         alert(error);
       }
