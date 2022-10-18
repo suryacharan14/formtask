@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
         await this.http
         .get(
           'http://127.0.0.1:8000/validate',
-          {params: this.formGroup.value, headers: new HttpHeaders({timeout: '200'})}
+          {params: this.formGroup.value, headers: new HttpHeaders({timeout: '2000'})}
         )
         .forEach((data) => {
           this.isLoading = false;
