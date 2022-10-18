@@ -1,0 +1,11 @@
+<div *ngIf="data.type == 'error'">
+    <h1>Error</h1>
+    <p>{{data.error.message}}</p>
+</div>
+
+<div *ngIf="data.type == 'ok'">
+    <h1>Response</h1>
+    <p>{{toJsonString(data.data)}}</p>
+</div>
+
+<button (click)="onClose()"  mat-raised-button color="primary">OK</button>

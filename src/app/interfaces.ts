@@ -13,3 +13,9 @@ export interface CloudValidators{
     maxlength?: number,
     readonly?: boolean
 }
+
+export interface AppResponse{
+    type: string,
+    data?: any,
+    error?: any,
+}

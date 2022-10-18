@@ -1,12 +1,17 @@
 <div class="flex">
+  <img src="assets/logo.png" class="floating-img" alt="Logo">
+  <br>
+  <br>
+  <br>
   <h1>{{title}}</h1>
 
   <form [formGroup]="formGroup" (submit)="submit()">
     <div *ngFor="let input of cloudForm">
       <app-cloud-field [formGroup]="formGroup" [field]="input"></app-cloud-field>
     </div>
-    <button mat-raised-button color="primary">Submit</button>
+    <button mat-raised-button *ngIf="!isLoading" color="primary">Submit</button>
+    <div class="flex" *ngIf="isLoading">
+      <mat-spinner color="accent" diameter="30"></mat-spinner>
+    </div>
   </form>
-
-  <p>{{formValue}}</p>
 </div>
