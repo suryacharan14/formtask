@@ -4,7 +4,7 @@ import jsonForm from '../assets/form.json';
 import { AppResponse, CloudForm } from './interfaces';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { catchError, throwError, } from 'rxjs';
+import { catchError, throwError, timeout, } from 'rxjs';
 import { UrlSerializer } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ResponseComponent } from './response/response.component';
@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   cloudForm: CloudForm[] = jsonForm['form'];
   formValue = '';
   isLoading = false;
+  loadingText = '';
   constructor(private fb: FormBuilder, private http: HttpClient, private dialog: MatDialog) {}
 
   ngOnInit(): void {}
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
   async submit() {
     if (this.formGroup.valid) {
       this.isLoading = true;
+      this.loadingText = 'Checking Eligibility';
       try {
         await this.http
         .get(
@@ -35,6 +37,7 @@ export class AppComponent implements OnInit {
         )
         .forEach((data: any) => {
           this.isLoading = false;
+          this.loadingText = '';
           let res: AppResponse | null = null;
           if(data.message){
             res = {type:"ok", ...data, action: 'add'};
@@ -46,9 +49,10 @@ export class AppComponent implements OnInit {
       } catch (error: any) {
         console.log(error);
         this.isLoading = false;
+        this.loadingText = '';
         this.openDialog({type: "error", error: error.message});
       }
-      // this.formGroup.reset();
+      this.formGroup.reset();
     } else {
       alert('Please fill the form correctly.');
     }
@@ -76,6 +80,7 @@ export class AppComponent implements OnInit {
 
   async addRequest(){
     this.isLoading = true;
+    this.loadingText = "Adding To Form";
       try {
         await this.http
         .get(
@@ -84,6 +89,7 @@ export class AppComponent implements OnInit {
         )
         .forEach((data: any) => {
           this.isLoading = false;
+          this.loadingText = '';
           let res: AppResponse | null = null;
           if(data.message){
             res = {type:"ok", ...data};
@@ -95,6 +101,7 @@ export class AppComponent implements OnInit {
       } catch (error: any) {
         console.log(error);
         this.isLoading = false;
+        this.loadingText = '';
         this.openDialog({type: "error", error: error.message});
       }
   }
